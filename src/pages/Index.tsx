@@ -1,6 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Index = () => {
   return (
@@ -62,6 +70,43 @@ const Index = () => {
           </div>
         </div>
       </div>
+
+      {/* Team Section */}
+      <footer className="bg-gray-50 py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center mb-16">
+            <h2 className="text-base font-semibold leading-7 text-primary fade-in">
+              Meet Our Team
+            </h2>
+            <p className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl fade-in">
+              Created by Deogiri College, Department of Bioinformatics
+            </p>
+          </div>
+
+          <Carousel className="w-full max-w-xs mx-auto">
+            <CarouselContent>
+              {teamMembers.map((member, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-4">
+                    <div className="flex flex-col items-center space-y-4">
+                      <Avatar className="w-32 h-32">
+                        <AvatarImage src={member.image} alt={member.name} />
+                        <AvatarFallback>{member.initials}</AvatarFallback>
+                      </Avatar>
+                      <div className="text-center">
+                        <h3 className="font-semibold text-lg">{member.name}</h3>
+                        <p className="text-sm text-gray-500">{member.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      </footer>
     </div>
   );
 };
@@ -129,6 +174,27 @@ const features = [
         />
       </svg>
     ),
+  },
+];
+
+const teamMembers = [
+  {
+    name: "Prince",
+    role: "Frontend & Backend Developer",
+    image: "/placeholder.svg", // Replace with actual image path
+    initials: "P",
+  },
+  {
+    name: "Meet",
+    role: "AI Developer & Database Developer",
+    image: "/placeholder.svg", // Replace with actual image path
+    initials: "M",
+  },
+  {
+    name: "Vaishnavi",
+    role: "Deployer",
+    image: "/placeholder.svg", // Replace with actual image path
+    initials: "V",
   },
 ];
 
