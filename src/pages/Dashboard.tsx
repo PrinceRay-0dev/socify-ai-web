@@ -8,15 +8,52 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Legend,
 } from "recharts";
 
 const data = [
-  { name: "Jan", value: 400 },
-  { name: "Feb", value: 300 },
-  { name: "Mar", value: 600 },
-  { name: "Apr", value: 800 },
-  { name: "May", value: 700 },
-  { name: "Jun", value: 900 },
+  {
+    name: "Jan",
+    instagram: 400,
+    facebook: 300,
+    twitter: 200,
+    linkedin: 150,
+  },
+  {
+    name: "Feb",
+    instagram: 300,
+    facebook: 400,
+    twitter: 250,
+    linkedin: 200,
+  },
+  {
+    name: "Mar",
+    instagram: 600,
+    facebook: 500,
+    twitter: 300,
+    linkedin: 250,
+  },
+  {
+    name: "Apr",
+    instagram: 800,
+    facebook: 600,
+    twitter: 400,
+    linkedin: 300,
+  },
+  {
+    name: "May",
+    instagram: 700,
+    facebook: 650,
+    twitter: 450,
+    linkedin: 350,
+  },
+  {
+    name: "Jun",
+    instagram: 900,
+    facebook: 800,
+    twitter: 500,
+    linkedin: 400,
+  },
 ];
 
 const Dashboard = () => {
@@ -57,15 +94,38 @@ const Dashboard = () => {
           <div className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" opacity={0.1} />
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
+                <Legend />
                 <Line
                   type="monotone"
-                  dataKey="value"
-                  stroke="hsl(var(--primary))"
+                  dataKey="instagram"
+                  stroke="#E1306C"
                   strokeWidth={2}
+                  name="Instagram"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="facebook"
+                  stroke="#4267B2"
+                  strokeWidth={2}
+                  name="Facebook"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="twitter"
+                  stroke="#1DA1F2"
+                  strokeWidth={2}
+                  name="Twitter"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="linkedin"
+                  stroke="#0077B5"
+                  strokeWidth={2}
+                  name="LinkedIn"
                 />
               </LineChart>
             </ResponsiveContainer>
