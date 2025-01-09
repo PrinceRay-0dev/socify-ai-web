@@ -2,18 +2,29 @@ import { useState } from "react";
 import { Search as SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
+import { langflowClient } from "@/utils/langflowClient";
+import { useToast } from "@/components/ui/use-toast";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const { toast } = useToast();
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ["search", searchQuery],
     queryFn: async () => {
-      if (!searchQuery) return [];
-      const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
-      if (!response.ok) throw new Error("Search failed");
-      return response.json();
+      if (!searchQuery) return null;
+      try {
+        const result = await langflowClient.search(searchQuery);
+        return result;
+      } catch (error) {
+        toast({
+          title: "Search Error",
+          description: "Failed to fetch search results. Please try again.",
+          variant: "destructive",
+        });
+        return null;
+      }
     },
     enabled: searchQuery.length > 0,
   });
@@ -22,13 +33,19 @@ const Search = () => {
     const value = e.target.value;
     setSearchQuery(value);
     
-    if (searchResults && searchResults.length > 0) {
-      const matchedSuggestions = searchResults
-        .map((result: any) => result.title)
-        .filter((title: string) => 
-          title.toLowerCase().includes(value.toLowerCase())
-        );
-      setSuggestions(matchedSuggestions);
+    if (searchResults) {
+      try {
+        const results = JSON.parse(searchResults);
+        if (Array.isArray(results)) {
+          const matchedSuggestions = results
+            .filter((item: any) => 
+              item.toString().toLowerCase().includes(value.toLowerCase())
+            );
+          setSuggestions(matchedSuggestions);
+        }
+      } catch (error) {
+        console.error("Failed to parse search results:", error);
+      }
     }
   };
 
@@ -49,17 +66,11 @@ const Search = () => {
         </div>
       )}
       
-      {suggestions.length > 0 && searchQuery && (
+      {searchResults && (
         <div className="absolute top-full mt-2 w-full bg-background/95 backdrop-blur-sm border rounded-lg shadow-lg p-2 z-50 max-h-60 overflow-y-auto">
-          {suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className="p-3 hover:bg-accent rounded-md cursor-pointer transition-colors"
-              onClick={() => setSearchQuery(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
+          <div className="p-3 rounded-md">
+            {searchResults}
+          </div>
         </div>
       )}
     </div>
