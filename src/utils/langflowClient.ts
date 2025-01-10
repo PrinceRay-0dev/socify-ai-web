@@ -71,5 +71,5 @@ export class LangflowClient {
 
 export const langflowClient = new LangflowClient(
   'https://api.langflow.astra.datastax.com',
-  process.env.VITE_LANGFLOW_TOKEN || ''
+  import.meta.env.VITE_LANGFLOW_TOKEN || ''
 );

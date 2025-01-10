@@ -12,21 +12,27 @@ const teamMembers = [
   {
     name: "Prince",
     role: "Frontend & Backend Developer",
-    image: "/placeholder.svg",
+    image: "/prince.jpg",
     gender: "male"
   },
   {
     name: "Meet",
     role: "AI Developer & Database Developer",
-    image: "/placeholder.svg",
+    image: "/meet.jpg",
     gender: "male"
   },
   {
     name: "Vaishnavi",
     role: "Deployer",
-    image: "/placeholder.svg",
+    image: "/vaishnavi.jpg",
     gender: "female"
   },
+  {
+    name: "Apurva Kulkarni",
+    role: "UI/UX Designer",
+    image: "/apurva.jpg",
+    gender: "female"
+  }
 ];
 
 const TeamCarousel = () => {

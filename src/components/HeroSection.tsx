@@ -20,9 +20,8 @@ const HeroSection = () => {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl fade-in">
             Transform Your Social Media Strategy with AI
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600 fade-in">
-            Analyze, optimize, and grow your social media presence with powerful
-            AI-driven insights and real-time analytics.
+          <p className="mt-6 text-lg leading-8 text-foreground dark:text-white fade-in">
+            Everything you need to succeed on social media
           </p>
           <div className="mt-10 space-y-6 fade-in">
             <Search />
@@ -45,7 +44,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-
       <Dialog open={showDemo} onOpenChange={setShowDemo}>
         <DialogContent className="sm:max-w-[800px]">
           <DialogHeader>

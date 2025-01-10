@@ -7,7 +7,6 @@ import { useToast } from "@/components/ui/use-toast";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
   const { toast } = useToast();
 
   const { data: searchResults, isLoading } = useQuery({
@@ -30,23 +29,7 @@ const Search = () => {
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-    
-    if (searchResults) {
-      try {
-        const results = JSON.parse(searchResults);
-        if (Array.isArray(results)) {
-          const matchedSuggestions = results
-            .filter((item: any) => 
-              item.toString().toLowerCase().includes(value.toLowerCase())
-            );
-          setSuggestions(matchedSuggestions);
-        }
-      } catch (error) {
-        console.error("Failed to parse search results:", error);
-      }
-    }
+    setSearchQuery(e.target.value);
   };
 
   return (
