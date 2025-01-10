@@ -19,10 +19,12 @@ export class LangflowClient {
         body: JSON.stringify(body)
       });
 
-      const responseMessage = await response.json();
       if (!response.ok) {
-        throw new Error(`${response.status} ${response.statusText} - ${JSON.stringify(responseMessage)}`);
+        const errorData = await response.json();
+        throw new Error(`API Error: ${response.status} - ${JSON.stringify(errorData)}`);
       }
+
+      const responseMessage = await response.json();
       return responseMessage;
     } catch (error) {
       console.error('Request Error:', error);
@@ -41,8 +43,12 @@ export class LangflowClient {
       "ParseData-tC5KA": {},
       "File-2hGby": {},
       "SplitText-IGvwp": {},
-      "AstraDB-sqBtI": {},
-      "AstraDB-jgDfJ": {},
+      "AstraDB-sqBtI": {
+        "token": this.applicationToken
+      },
+      "AstraDB-jgDfJ": {
+        "token": this.applicationToken
+      },
       "OpenAIModel-3NvFn": {},
       "GroqModel-rLPr9": {}
     };

@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { langflowClient } from "@/utils/langflowClient";
 import { useToast } from "@/components/ui/use-toast";
+import { Loader2 } from "lucide-react";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,6 +27,8 @@ const Search = () => {
       }
     },
     enabled: searchQuery.length > 0,
+    retry: 1,
+    staleTime: 30000,
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,7 +44,11 @@ const Search = () => {
         onChange={handleInputChange}
         className="pl-10 h-12 text-lg rounded-full shadow-lg focus:ring-2 focus:ring-primary"
       />
-      <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+      {isLoading ? (
+        <Loader2 className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground animate-spin" />
+      ) : (
+        <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+      )}
       
       {isLoading && (
         <div className="absolute top-full mt-2 w-full text-center py-2 bg-background/80 backdrop-blur-sm rounded-md">
