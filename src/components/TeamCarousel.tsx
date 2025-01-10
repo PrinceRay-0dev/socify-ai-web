@@ -12,7 +12,7 @@ const teamMembers = [
   {
     name: "Prince",
     role: "Frontend & Backend Developer",
-    image: "/lovable-uploads/b4a21a66-0a0a-45f4-a2db-97357c88ad5f.png",
+    image: "/lovable-uploads/11af5b45-d526-4e22-81ab-a69dc85b5e9f.png",
     gender: "male"
   },
   {

@@ -48,7 +48,7 @@ export class LangflowClient {
     };
 
     const endpoint = `/lf/${langflowId}/api/v1/run/${flowIdOrName}`;
-    
+
     try {
       const response = await this.post(endpoint, {
         input_value: query,
