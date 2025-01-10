@@ -70,3 +70,16 @@
 .slide-in {
   @apply animate-slideIn;
 }
+
+/* Reduce spacing between sections */
+section, div[class*="py-"] {
+  @apply py-4;
+}
+
+.space-y-6 {
+  @apply space-y-4;
+}
+
+.mt-10 {
+  @apply mt-6;
+}

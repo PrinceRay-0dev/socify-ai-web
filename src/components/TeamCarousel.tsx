@@ -12,34 +12,34 @@ const teamMembers = [
   {
     name: "Prince",
     role: "Frontend & Backend Developer",
-    image: "/prince.jpg",
+    image: "/lovable-uploads/b4a21a66-0a0a-45f4-a2db-97357c88ad5f.png",
     gender: "male"
   },
   {
     name: "Meet",
     role: "AI Developer & Database Developer",
-    image: "/meet.jpg",
+    image: "/lovable-uploads/ba845495-f4dc-49d9-88af-f468fd23335d.png",
     gender: "male"
   },
   {
     name: "Vaishnavi",
     role: "Deployer",
-    image: "/vaishnavi.jpg",
+    image: "/lovable-uploads/573c670f-0eaa-4331-bc69-ddc3fcb4e5c5.png",
     gender: "female"
   },
   {
     name: "Apurva Kulkarni",
     role: "UI/UX Designer",
-    image: "/apurva.jpg",
+    image: "/lovable-uploads/03223ea2-e60e-40ee-a2c7-87dacfccba93.png",
     gender: "female"
   }
 ];
 
 const TeamCarousel = () => {
   return (
-    <footer className="bg-gradient-to-b from-background to-secondary/20 py-16">
+    <footer className="bg-gradient-to-b from-background to-secondary/20 py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-primary mb-12 fade-in">
+        <h2 className="text-3xl font-bold text-center text-primary mb-8 fade-in">
           Meet Our Team
         </h2>
         
@@ -48,7 +48,7 @@ const TeamCarousel = () => {
             {teamMembers.map((member, index) => (
               <CarouselItem key={index}>
                 <Card className="p-6 bg-background/60 backdrop-blur-sm border shadow-lg hover:shadow-xl transition-all">
-                  <div className="flex flex-col items-center space-y-6">
+                  <div className="flex flex-col items-center space-y-4">
                     <Avatar className="w-32 h-32 border-4 border-primary/20">
                       <AvatarImage src={member.image} alt={member.name} />
                       <AvatarFallback className="bg-primary/10">
